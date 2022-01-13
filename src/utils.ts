@@ -1,5 +1,5 @@
 import { Platform, StatusBar, ViewStyle } from 'react-native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
+import { hasNotch } from 'react-native-device-info';
 
 let isExpo = false;
 try {
@@ -50,7 +50,7 @@ const disableExpoTranslucentStatusBar = () => {
 const getStatusBarHeight = (isLandscape: boolean) => {
   if (Platform.OS === 'ios') {
     if (isLandscape) return 0;
-    return isIphoneX() ? 44 : 20;
+    return hasNotch() ? 44 : 20;
   } else if (Platform.OS === 'android') {
     // eslint-disable-next-line no-undef
     return (global.Expo || isExpo) && !disabledExpoTranslucentStatusBar
